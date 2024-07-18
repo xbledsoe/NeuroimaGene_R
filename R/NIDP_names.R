@@ -2,7 +2,8 @@
 #'
 #' Supplies a list of all NIDPs by name for any given modality or atlas
 #' @param modality Neuroimaging modality. Defaults to NA; see README for additional options
-#' @param atlas Neuroimaging parcellation atlas for NIDP query. Defaults to NA; see README for additional options
+#' @param atlas Neuroimaging parcellation atlas for NIDP query. Defaults to NA; 
+#' see README for additional options
 #' @param filename optional filename for writing data to a table
 #' @param verbose print runtime messages to R console. Default to FALSE
 #' @keywords reference

@@ -1,12 +1,26 @@
 #' Main neuroimaGene query
 #'
-#' Using a user supplied vector of genes (Ensembl ID's or HUGO names), this function queries the NeuroimaGene resource for all statistically significant GReX-NIDP associations and returns all findings as a data.table.
+#' Using a user supplied vector of genes (Ensembl ID's or HUGO names), this 
+#' function queries the NeuroimaGene resource for all statistically significant
+#' GReX-NIDP associations and returns all findings as a data.table.
 #' @param gene_list List of genes to work as inputs. There are no defaults.
-#' @param modality Neuroimaging modality for NIDP query. Defaults to T1 structural NIDPs.
-#' @param atlas Neuroimaging parcellation atlas for NIDP query. Defaults to Desikan structural atlas.
-#' @param mtc Statistical multiple testing correction for NIDP query. Defaults to BH for the Benjamini Hochberg False Discovery Rate.
-#' @param nidps optional user defined vector of target NIDPs to query. These can be obtained from the listNIDPnames() function.
-#' @param filename optional user defined filename for writing neuroimaGene output to a file.
+#' @param modality Neuroimaging modality for NIDP query. Defaults to T1 structural 
+#' NIDPs. Other common options include 'dMRI' for diffusion MRI imaging and 'fMRI'
+#' for fucntional MRI image results. 
+#' @param atlas Neuroimaging parcellation atlas for NIDP query. Defaults to 
+#' Desikan structural atlas. Common T1 atlases include the 'DKT', and 'Destrieux'
+#' cortical atlases and 'Subcortex' for freesurfer parcellation of subrotical regions. 
+#' See package documentation or vignette for full list. 
+#' @param mtc Statistical multiple testing correction for NIDP query. This defaults 
+#' to 'BH' for the Benjamini Hochberg False Discovery Rate. Other options include
+#' 'BF' for the bonferroni family wise error rate and 'nom' for nominal findings
+#' at pvalue <= 0.05. 
+#' @param nidps optional user defined vector of target NIDPs to query. Specific 
+#' NIDP names can be obtained from the listNIDPnames() function. Use of this
+#' parameter overrides the multiple testing correction, returning all nominally 
+#' significant findings. 
+#' @param filename optional user defined path/filename to which the script will
+#' write the nueroimaGene output data table.
 #' @param verbose print runtime messages to R console. Default to FALSE
 #' @param vignette use for building vignette on installation. Default to FALSE
 #' @keywords neuroimaging

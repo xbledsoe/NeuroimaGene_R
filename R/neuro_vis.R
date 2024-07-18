@@ -6,7 +6,7 @@
 #' NeuroimaGene object. Colors can be defined by the user.
 #'
 #' @param ng_obj NeuroimaGene object produced by neuroimaGene() function
-#' @param atlas desired atlas for visualization. Desikan (default) Subcortex, DKT, Destrieux.
+#' @param atlas desired atlas for visualization. Desikan (default), Subcortex, DKT, Destrieux.
 #' @param lowcol color for low end of Zscore spectrum. Default is dark red
 #' @param midcol color for middle of Zscore spectrum. Default is white
 #' @param highcol color for top end of Zscore spectrum. Default is blue4
