@@ -20,7 +20,6 @@ You can also install the `NeuroimaGene` package directly from GitHub using the `
 ### Step-by-Step Instructions
 
 1. **Install `devtools`**:
-    If you don't have the `devtools` package installed, you can install it from CRAN:
 
     ```R
     install.packages("devtools")
