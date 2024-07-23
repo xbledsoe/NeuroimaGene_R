@@ -197,7 +197,7 @@ imaging</td>
 </tr>
 <tr class="even">
 <td>T1</td>
-<td>a2009s</td>
+<td>Destrieux</td>
 <td>444</td>
 <td>Destrieux atlas parcellation of cortical sulci and gyri</td>
 <td><a
@@ -213,7 +213,7 @@ nuclei</a></td>
 </tr>
 <tr class="even">
 <td>T1</td>
-<td>aseg_volume</td>
+<td>Subcortex</td>
 <td>52</td>
 <td>subcortical volumetric segmentation</td>
 <td><a
@@ -236,7 +236,7 @@ href="https://doi.org/10.1016/j.neuroimage.2006.01.021">Desikan</a></td>
 </tr>
 <tr class="odd">
 <td>T1</td>
-<td>DKTatlas</td>
+<td>DKT</td>
 <td>186</td>
 <td>DKT atlas parcellation of cortical morphology</td>
 <td><a href="https://doi.org/10.3389/fnins.2012.00171">DKTatlas</a></td>
