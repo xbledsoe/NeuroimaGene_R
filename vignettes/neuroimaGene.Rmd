@@ -130,12 +130,12 @@ See dropdown table for NIDP descriptions and source links
 |Modality| Atlas name | # of NIDPs | Description | source | 
 | --- | --- | --- | --- | --- |
 |T1 | all | 1319 | All measures recorded by the UKB neuroimaging study derived from T1 imaging| see note\*|
-|T1 | a2009s | 444 | Destrieux atlas parcellation of cortical sulci and gyri | [Destrieux](https://doi.org/10.1016/j.neuroimage.2010.06.010) |
+|T1 | Destrieux | 444 | Destrieux atlas parcellation of cortical sulci and gyri | [Destrieux](https://doi.org/10.1016/j.neuroimage.2010.06.010) |
 |T1 | AmygNuclei | 20 | morphology of Nuclei of the amygdala | [Amygdala nuclei](https://doi.org/10.1016/j.neuroimage.2017.04.046)|
-|T1 | aseg_volume | 52 | subcortical volumetric segmentation | [aseg_volume](https://doi.org/10.1016/S0896-6273(02)00569-X)|
+|T1 | Subcortex | 52 | subcortical volumetric segmentation | [aseg_volume](https://doi.org/10.1016/S0896-6273(02)00569-X)|
 |T1 | Broadmann | 84 | cortical morphology via Broadmann Areas | [Broadmann](https://doi.org/10.1093/cercor/bhm225)|
 |T1 | Desikan | 202 | Desikan Killiany atlas parcellation of cortical morphology | [Desikan](https://doi.org/10.1016/j.neuroimage.2006.01.021)|
-|T1 | DKTatlas | 186 | DKT atlas parcellation of cortical morphology | [DKTatlas](https://doi.org/10.3389/fnins.2012.00171)|
+|T1 | DKT | 186 | DKT atlas parcellation of cortical morphology | [DKTatlas](https://doi.org/10.3389/fnins.2012.00171)|
 |T1 | FAST | 139 | cortical morphology via FMRIB's Automatic Segmentation Tool | [FAST](https://doi.org/10.1109/42.906424)|
 |T1 | FIRST | 15 | Subcortical morphology via FIRST | [FIRST](https://doi.org/10.1016/j.neuroimage.2011.02.046)|
 |T1 | HippSubfield | 44 | morphology of Hippocampal subfields | [HippSubfield](https://doi.org/10.1016/j.neuroimage.2015.04.042)|
