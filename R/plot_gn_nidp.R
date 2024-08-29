@@ -5,6 +5,7 @@
 #' @param maxGns maximum number of genes to visualize. default=15
 #' @param maxNidps maximum number of NIDPs to visualize. default=20
 #' @param title optional title tag for the plot
+#' @param shortnames optional boolean tag for simplified names. Default to TRUE
 #' @param verbose print runtime messages to R console. Default to FALSE
 #' @keywords neuroimaging
 #' @export
@@ -15,7 +16,7 @@
 #' ng <- neuroimaGene(gene_list, atlas = NA, mtc = 'BH', vignette = TRUE)
 #' plot_gnNIDP(ng)
 #'
-plot_gnNIDP <- function(ng_obj, maxNidps = 20, maxGns = 15, title = NA, verbose = FALSE) {
+plot_gnNIDP <- function(ng_obj, maxNidps = 20, maxGns = 15, title = NA, shortnames = TRUE, verbose = FALSE) {
   # initialize column names as null variables
   zscore <- maxZ <- gwas_phenotype <- gene_name <- training_model <- tm_ct <- NULL
 
@@ -44,12 +45,19 @@ plot_gnNIDP <- function(ng_obj, maxNidps = 20, maxGns = 15, title = NA, verbose 
 
   ng <- data.table::setDT(merge(ng_obj, anno, by = 'gwas_phenotype'))
   gn_nidp <- ng[, list(tm_ct = length(unique(training_model))),
-                by = c('gene_name', 'gwas_phenotype')]
-  gn_plot <- ggplot2::ggplot(gn_nidp, aes(x = gene_name, y = gwas_phenotype, fill = tm_ct)) +
+                by = c('gene_name', 'gwas_phenotype', 'NIDP')]
+  
+  if(shortnames == FALSE) {
+    gn_nidp <- gn_nidp[, -c('NIDP')]
+    setnames(gn_nidp, 'gwas_phenotype', 'NIDP')
+  }
+  
+  gn_plot <- ggplot2::ggplot(gn_nidp, aes(x = gene_name, y = NIDP, fill = tm_ct)) +
     geom_tile(color = 'white') +
     theme_light()+
     ggtitle(paste0('Neuroimaging correlates of GReX', tag)) +
-    theme(axis.text.x = element_text(angle = 60, hjust = 1)) +
+    theme(axis.text.x = element_text(angle = 60, hjust = 1, size = 11),
+          axis.text.y = element_text(size = 11)) +
     xlab('gene') +
     ylab('NIDPs') +
     labs(fill='JTI model\ncount')
