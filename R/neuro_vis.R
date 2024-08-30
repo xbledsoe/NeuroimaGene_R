@@ -23,7 +23,7 @@
 #' neuro_vis(ng, atlas = 'DKT')
 #'
 #'
-neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'darkred', midcol = 'white', highcol = 'blue4', title = NA) {
+neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'white', highcol = 'royalblue2', title = NA) {
   # initialize column names as null variables
   zscore <- atlasnm <- atl <- gwas_phenotype <- meanZ <- measurement <- NULL
 
@@ -74,7 +74,7 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'darkred', midcol = 'w
                   size = .1,
                   position = "dispersed",
                   mapping = aes(fill = meanZ))+
-      scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol) +
+      scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol, na.value = "lightgrey") +
       theme_minimal() +
       ggtitle(paste0('Subcortical NIDPs (aseg atlas)', tag))+
       theme(text = element_text(size = 14),
@@ -103,7 +103,7 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'darkred', midcol = 'w
                 position = "stacked",
                 mapping = aes(fill = meanZ))+
     facet_wrap(~measurement) +
-    scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol) +
+    scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol, na.value = "lightgrey") +
     theme_minimal() +
     ggtitle(paste0(atlas, ' atlas NIDPs', tag))+
     theme(text = element_text(size = 14),
@@ -114,9 +114,6 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'darkred', midcol = 'w
   }
   return(plot)
 }
-
-
-
 
 
 
