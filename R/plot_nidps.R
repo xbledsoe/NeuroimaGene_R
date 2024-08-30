@@ -5,6 +5,7 @@
 #' @param maxNidps maximum number of NIDPs to visualize. default=30
 #' @param title optional title tag for the plot
 #' @param shortnames optional boolean tag for simplified names. Default to TRUE
+#' @param mag boolean to present effect sizes by magnitude rather than as a vector. Default to TRUE
 #' @param verbose print runtime messages to R console. Default to FALSE
 #' @keywords neuroimaging
 #' @export
@@ -15,7 +16,7 @@
 #' ng <- neuroimaGene(gene_list, atlas = NA, mtc = 'BH', vignette = TRUE)
 #' plot_nidps(ng)
 #'
-plot_nidps <- function(ng_obj, maxNidps = 30, title = NA, shortnames = TRUE, verbose = FALSE) {
+plot_nidps <- function(ng_obj, maxNidps = 30, title = NA, shortnames = TRUE, mag = TRUE, verbose = FALSE) {
   # initialize column names as null variables
   zscore <- meanZ <- gwas_phenotype <- secondary <- NULL
 
@@ -42,7 +43,12 @@ plot_nidps <- function(ng_obj, maxNidps = 30, title = NA, shortnames = TRUE, ver
     ng <- ng[, -c('NIDP')]
     setnames(ng, 'gwas_phenotype', 'NIDP')
   }
-  gn_plot <- ggplot2::ggplot(ng, aes(x = NIDP, y = abs(meanZ), color= secondary, group = as.character(sign))) +
+  
+  if(mag == TRUE) {
+    ng$meanZ <- abs(ng$meanZ)
+  }
+  
+  gn_plot <- ggplot2::ggplot(ng, aes(x = NIDP, y = meanZ, color= secondary, group = as.character(sign))) +
     geom_point(aes(shape=as.character(sign)), size = 4) + #size=as.character(gn_ct))) +
     theme_light()+
     ggtitle(paste0("Mean Effect Size per NIDP across\nall genes", tag)) +
