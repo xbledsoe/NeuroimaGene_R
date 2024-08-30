@@ -44,8 +44,12 @@ plot_nidps <- function(ng_obj, maxNidps = 30, title = NA, shortnames = TRUE, mag
     setnames(ng, 'gwas_phenotype', 'NIDP')
   }
   
+  
   if(mag == TRUE) {
     ng$meanZ <- abs(ng$meanZ)
+    axis_label <- 'Normalized effect size magnitude'
+  } else {
+    axis_label = 'Normalized effect size'
   }
   
   gn_plot <- ggplot2::ggplot(ng, aes(x = NIDP, y = meanZ, color= secondary, group = as.character(sign))) +
@@ -53,7 +57,7 @@ plot_nidps <- function(ng_obj, maxNidps = 30, title = NA, shortnames = TRUE, mag
     theme_light()+
     ggtitle(paste0("Mean Effect Size per NIDP across\nall genes", tag)) +
     xlab('NIDPs') +
-    ylab('Normalized effect size magnitude') +
+    ylab(axis_label) +
     theme_light() +
     theme(axis.text.x = element_text(angle = 0, size = 11, hjust = 0.5, vjust =0.5),
           axis.text.y = element_text(size = 11),
