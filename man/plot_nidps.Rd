@@ -4,7 +4,14 @@
 \alias{plot_nidps}
 \title{NIDP summary plot of NeuroimaGene object}
 \usage{
-plot_nidps(ng_obj, maxNidps = 30, title = NA, verbose = FALSE)
+plot_nidps(
+  ng_obj,
+  maxNidps = 30,
+  title = NA,
+  shortnames = TRUE,
+  mag = TRUE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{ng_obj}{NeuroimaGene Object}
@@ -12,6 +19,10 @@ plot_nidps(ng_obj, maxNidps = 30, title = NA, verbose = FALSE)
 \item{maxNidps}{maximum number of NIDPs to visualize. default=30}
 
 \item{title}{optional title tag for the plot}
+
+\item{shortnames}{optional boolean tag for simplified names. Default to TRUE}
+
+\item{mag}{boolean to present effect sizes by magnitude rather than as a vector. Default to TRUE}
 
 \item{verbose}{print runtime messages to R console. Default to FALSE}
 }

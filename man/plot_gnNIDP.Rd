@@ -4,7 +4,14 @@
 \alias{plot_gnNIDP}
 \title{Gene by NIDP summary plot of neuroimaGene object}
 \usage{
-plot_gnNIDP(ng_obj, maxNidps = 20, maxGns = 15, title = NA, verbose = FALSE)
+plot_gnNIDP(
+  ng_obj,
+  maxNidps = 20,
+  maxGns = 15,
+  title = NA,
+  shortnames = TRUE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{ng_obj}{NeuroimaGene object}
@@ -14,6 +21,8 @@ plot_gnNIDP(ng_obj, maxNidps = 20, maxGns = 15, title = NA, verbose = FALSE)
 \item{maxGns}{maximum number of genes to visualize. default=15}
 
 \item{title}{optional title tag for the plot}
+
+\item{shortnames}{optional boolean tag for simplified names. Default to TRUE}
 
 \item{verbose}{print runtime messages to R console. Default to FALSE}
 }

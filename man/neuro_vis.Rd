@@ -7,16 +7,16 @@
 neuro_vis(
   ng_obj,
   atlas = "Desikan",
-  lowcol = "darkred",
+  lowcol = "red2",
   midcol = "white",
-  highcol = "blue4",
+  highcol = "royalblue2",
   title = NA
 )
 }
 \arguments{
 \item{ng_obj}{NeuroimaGene object produced by neuroimaGene() function}
 
-\item{atlas}{desired atlas for visualization. Desikan (default) Subcortex, DKT, Destrieux.}
+\item{atlas}{desired atlas for visualization. Desikan (default), Subcortex, DKT, Destrieux.}
 
 \item{lowcol}{color for low end of Zscore spectrum. Default is dark red}
 

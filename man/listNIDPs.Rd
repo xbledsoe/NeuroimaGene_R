@@ -9,7 +9,8 @@ listNIDPs(modality = NA, atlas = NA, filename = NA, verbose = FALSE)
 \arguments{
 \item{modality}{Neuroimaging modality. Defaults to NA; see README for additional options}
 
-\item{atlas}{Neuroimaging parcellation atlas for NIDP query. Defaults to NA; see README for additional options}
+\item{atlas}{Neuroimaging parcellation atlas for NIDP query. Defaults to NA; 
+see README for additional options}
 
 \item{filename}{optional filename for writing data to a table}
 

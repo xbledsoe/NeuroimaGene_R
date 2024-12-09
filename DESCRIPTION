@@ -1,7 +1,7 @@
 Package: neuroimaGene
 Type: Package
 Title: Transcriptomic Atlas of Neuroimaging Derived Phenotypes
-Version: 0.1.0
+Version: 0.1.2
 Authors@R: c(person("Xavier", "Bledsoe", 
                     email = "xavier.bledsoe@vanderbilt.edu", 
                     role = c("aut", "cre"),
@@ -32,7 +32,7 @@ Imports:
     RSQLite
 Depends:
     R (>= 3.5.0)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown
