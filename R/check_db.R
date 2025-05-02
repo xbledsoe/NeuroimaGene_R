@@ -15,7 +15,7 @@
 # Define the function to check and download the database
 check_db <- function(timeout=900) {
   pkg_dir <- system.file(package = "neuroimaGene")
-  db_path <- file.path(pkg_dir, "extdata", "neuroimaGenefast.db")
+  db_path <- file.path(pkg_dir, "extdata", "NeuroimaGenefast.db")
   db_url <- "https://zenodo.org/records/10994978/files/NeuroimaGenefast.db"
   if (!file.exists(db_path)) {
     # Prompt the user for permission to download the database
