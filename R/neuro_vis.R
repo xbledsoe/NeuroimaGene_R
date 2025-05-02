@@ -61,7 +61,7 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
     stop(paste0('No nidps from the',atlas,'atlas detected.'))
   }
 
-  if (atlas == 'Subcortex') {
+  if (atlas == 'Subcortex' | (atlas == 'aseg_volume' | atlas == 'subcortex') ) {
     # plot aseg volumes
     aseg_vol <- stat_vis[gwas_phenotype %like% 'volume' & atl == 'Subcortex',]
     aseg_vol1 <- aseg_vol
