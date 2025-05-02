@@ -47,6 +47,7 @@ neuroimaGene <- function(gene_list, modality='T1', atlas='Desikan', mtc='BH', ni
 
   if (modality %in% c('all', 'All')){ modality <- NA}
   if (atlas %in% c('all', 'All')){ atlas <- NA}
+  if (atlas %in% c('Subcortex', 'subcorted', 'aseg_vol')){atlas <- 'aseg_volume'}
 
     if (!identical(nidps, NA)) {
     typ <- 'all'
