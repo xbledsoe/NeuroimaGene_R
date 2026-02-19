@@ -46,10 +46,10 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
                                  'desikan', 'dkt', 'destrieux', 'subcortex'),
                        realname =c('Desikan', 'DKT', 'Destrieux', 'Subcortex',
                               'Desikan', 'DKT', 'Destrieux', 'Subcortex'),
-                       fsatl = c('ggseg::dk', 'dkt_atl',
-                                 'dest_atl','ggseg::aseg',
-                                 'ggseg::dk', 'dkt_atl',
-                                 'dest_atl','ggseg::aseg'),
+                       fsatl = c('ggseg::dk()', 'dkt_atl',
+                                 'dest_atl','ggseg::aseg()',
+                                 'ggseg::dk()', 'dkt_atl',
+                                 'dest_atl','ggseg::aseg()'),
                        fsnm = c('dk', 'dkt', 'destrieux', 'aseg',
                                 'dk', 'dkt', 'destrieux', 'aseg'))
   atlname = atldir[atlasnm == atlas,]$realname
@@ -61,19 +61,15 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
     stop(paste0('No nidps from the',atlas,'atlas detected.'))
   }
 
+  atlas_obj <- eval(parse(text = fs))
+
   if (atlas == 'Subcortex' | (atlas == 'aseg_volume' | atlas == 'subcortex') ) {
     # plot aseg volumes
     aseg_vol <- stat_vis[gwas_phenotype %like% 'volume' & atl == 'Subcortex',]
-    aseg_vol1 <- aseg_vol
-    aseg_vol2 <- aseg_vol
-    aseg_vol1$side = 'coronal'
-    aseg_vol2$side = 'sagittal'
-    aseg_vol3 <- rbind(aseg_vol1, aseg_vol2)
-    plot <- ggseg::ggseg(aseg_vol3, atlas = ggseg::aseg,
-                  colour = "black",
-                  size = .1,
-                  position = "dispersed",
-                  mapping = aes(fill = meanZ))+
+    plot <- ggplot() +
+      geom_brain(atlas = atlas_obj, data = aseg_vol,
+                 mapping = aes(fill = meanZ),
+                 colour = "black", linewidth = .1) +
       scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol, na.value = "lightgrey") +
       theme_minimal() +
       ggtitle(paste0('Subcortical NIDPs (aseg atlas)', tag))+
@@ -85,35 +81,20 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
 
   } else {
 
-    measures = unique(stat_vis$measurement[!is.na(stat_vis$measurement)])
-    stat_vis_final = data.table::data.table()
-    for(msr in measures) {
-      temp <- data.table::as.data.table(merge(stat_vis[measurement == msr,],
-                                  data.table::as.data.table(eval(parse(text = fs))$data)[,c('label', 'roi')],
-                                  by = c('label'),
-                                  all.y = TRUE))
-      temp$measurement <- msr
-      stat_vis_final = rbind(stat_vis_final, temp)
-    }
-    stat_vis_final$atlas <- fs2
-    #plot <- ggseg(stat_vis, atlas = fs,
-    plot <- ggseg::ggseg(stat_vis_final, atlas = eval(parse(text = fs)),
-                colour = "black",
-                size = .1,
-                position = "stacked",
-                mapping = aes(fill = meanZ))+
-    facet_wrap(~measurement) +
-    scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol, na.value = "lightgrey") +
-    theme_minimal() +
-    ggtitle(paste0(atlas, ' atlas NIDPs', tag))+
-    theme(text = element_text(size = 14),
-          panel.grid.major = element_blank(),
-          panel.grid.minor = element_blank(),
-          axis.title = element_blank(),
-          plot.title = element_text(hjust = 0.5, size = 14))
+    plot <- ggplot(stat_vis) +
+      geom_brain(atlas = atlas_obj,
+                 mapping = aes(fill = meanZ),
+                 colour = "black", linewidth = .1,
+                 position = position_brain(view ~ hemi)) +
+      facet_wrap(~measurement) +
+      scale_fill_gradient2(low = lowcol, mid = midcol, high = highcol, na.value = "lightgrey") +
+      theme_minimal() +
+      ggtitle(paste0(atlas, ' atlas NIDPs', tag))+
+      theme(text = element_text(size = 14),
+            panel.grid.major = element_blank(),
+            panel.grid.minor = element_blank(),
+            axis.title = element_blank(),
+            plot.title = element_text(hjust = 0.5, size = 14))
   }
   return(plot)
 }
-
-
-

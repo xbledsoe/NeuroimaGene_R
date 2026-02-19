@@ -28,7 +28,7 @@ Imports:
     ggplot2,
     DBI,
     stringr,
-    ggseg,
+    ggseg (>= 2.0.0),
     RSQLite
 Depends:
     R (>= 3.5.0)
