@@ -29,10 +29,15 @@ Imports:
     DBI,
     stringr,
     ggseg (>= 2.0.0),
+    ggsegDKT (>= 2.0.0),
+    ggsegDestrieux (>= 2.0.0),
     RSQLite
+Remotes:
+    ggsegverse/ggsegDKT,
+    ggsegverse/ggsegDestrieux
 Depends:
     R (>= 3.5.0)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     rmarkdown

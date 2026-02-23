@@ -13,7 +13,7 @@
 #' @param title optional title tag for the plot
 #' @keywords neuroimaging
 #' @export
-#' @import data.table ggplot2 stringr ggseg
+#' @import data.table ggplot2 stringr ggseg ggsegDKT ggsegDestrieux
 #' @importFrom utils write.table
 #' @importFrom stats na.omit
 #' @returns class: ggplot object depicting 2D visualization of the NIDPs from the neuroimaGene object portrayed on the brain and shaded by mean effect size.
@@ -27,9 +27,6 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
   # initialize column names as null variables
   zscore <- atlasnm <- atl <- gwas_phenotype <- meanZ <- measurement <- NULL
 
-  # load required local data from package
-  dkt_atl <- readRDS(system.file("extdata","dkt_atlas.rda", package = "neuroimaGene"))
-  dest_atl <- readRDS(system.file("extdata","dest_atlas.rda", package = "neuroimaGene"))
 
   if(is.na(title)){
     tag <- ''
@@ -46,10 +43,10 @@ neuro_vis <- function(ng_obj, atlas = 'Desikan', lowcol = 'red2', midcol = 'whit
                                  'desikan', 'dkt', 'destrieux', 'subcortex'),
                        realname =c('Desikan', 'DKT', 'Destrieux', 'Subcortex',
                               'Desikan', 'DKT', 'Destrieux', 'Subcortex'),
-                       fsatl = c('ggseg::dk()', 'dkt_atl',
-                                 'dest_atl','ggseg::aseg()',
-                                 'ggseg::dk()', 'dkt_atl',
-                                 'dest_atl','ggseg::aseg()'),
+                       fsatl = c('ggseg::dk()', 'ggsegDKT::dkt()',
+                                 'ggsegDestrieux::destrieux()','ggseg::aseg()',
+                                 'ggseg::dk()', 'ggsegDKT::dkt()',
+                                 'ggsegDestrieux::destrieux()','ggseg::aseg()'),
                        fsnm = c('dk', 'dkt', 'destrieux', 'aseg',
                                 'dk', 'dkt', 'destrieux', 'aseg'))
   atlname = atldir[atlasnm == atlas,]$realname
