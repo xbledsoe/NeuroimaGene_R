@@ -55,7 +55,81 @@ library(neuroimaGene)
 
 The NeuroimaGene R package serves to identify, characterize, and
 visualize the neurological correlates of genetically regulated gene
-expression (GReX). The following functions serve this goal.
+expression (GReX). These data are stored permanently as a SQL database 
+on Zenodo and need to be integrated into the package for the package to 
+work. <u>To automatically download the database, simply proceed to the next 
+step below.</u> If you run into issues with accessing the db (such as 'Error: 
+no such table: Parent'), then please click on the dropdown menu in this section.
+
+<details>
+<summary><b>Troubleshooting the neuroimaGene SQL database</b></summary>
+
+
+The neuroimaGene SQL database is hosted at the following url: 
+[https://zenodo.org/records/10994978/files/NeuroimaGenefast.db]. It is 
+necessary for the functionality of the package. The preferred way to download 
+the .db file is simply to run a neuroimaGene() query using any genes of interest 
+and to follow the prompts, allowing the package to download the file 
+automatically. This download may fail for any number of reasons including 
+command timeout, connectivity failures, and institutional firewalls. 
+The check_db() function is designed to assist in the acquisition and 
+verification of the .db file. 
+
+
+**SQL file failed due to timeout**
+
+The neuroimaGene file is large (~1.9GB) and downloading it may take longer 
+than is allotted by the program. The default time limit is 900 seconds 
+(or 15 minutes). If more time is needed, you can specifiy any length using 
+the 'timeout' parameter in the check_db() function. For example, the following 
+command will re-attempt to download the file with 30 minutes of allotted time. 
+  `check_db(timeout = 1800)`
+  
+  
+**File is corrupted**
+
+If the neuroimaGene SQL file is corrupted on download, the message "Error: 
+no such table: Parent" message is likely to emerge. There are two approaches 
+to fix this. **First** I would re-run `check_db()`. If the SQL database is 
+present, you will be presented with the option to delete the current file and 
+re-download it fresh from Zenodo. This may be all that is necessary to 
+fix the issue. As with before, you may specify any timeout to give the program 
+time to retrieve the data. If check_db() still does not work, consider manual 
+acquisition of the data file as described below. 
+
+**Manual NeuroimaGene database aqcuisition**
+
+Downloading the package from zenodo using R commands may not work in some 
+computational settings. It is possible to specify a local .db file for use 
+with the neuroimaGene package. You may download the NeuroimaGenefast.db 
+file to your local machine from its zenodo webpage at 
+[https://zenodo.org/records/10994978]. Alternatively, you can download it 
+using curl
+
+`curl -O --output-dir LOCALDIR/  https://zenodo.org/records/10994978/files/NeuroimaGenefast.db`
+
+Once the .dbfile is at LOCALDIR/NeuroimaGenefast.db, you can direct the 
+neuroimaGene R to use the local copy using the following code
+
+`check_db(localdb = 'LOCALDIR/NeuroimaGenefast.db')`
+
+The neuroimaGene package will check the md5 sum of the local copy to see if 
+the file is in tact and if it matches the expected data. If a mismatch is 
+detected, you will be alerted as the file is likely corrupt. Nevertheless, 
+you will be given the option to proceed with integration of the mismatched 
+file if perhaps you have made intentional alterations to the db file and wish 
+to use your own version. 
+
+
+
+If issues persist, please do not hesitate to contact me 
+using the following link: [https://github.com/xbledsoe/NeuroimaGene_R/issues/new/choose]
+
+
+
+</p>
+</details>
+
 
 ### The main neuroimaGene query
 
